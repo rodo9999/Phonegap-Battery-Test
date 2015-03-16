@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>PhoneGap Battery Status Test</title>
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="buttons.css" />
+    <style>
+    body {margin:0px;font-size:large;}
+	.hidden {visibility:collapse;display:none;}
+	.expose {visibility:visible;display:block;} // Here for completeness only.
+	.copyright {padding:5px;align:left;font-style:italic;font-size:small;}
+    </style>
+    <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+    <script type="text/javascript">
+    var my_media = null;
+    var mediaTimer = null;
+    // Wait for PhoneGap to load
+	window.addEventListener("batterystatus", onBatteryStatus, false);
+	window.addEventListener("batterycritical", onBatteryCritical, false);
+	window.addEventListener("batterylow", onBatteryLow, false);
+
+    function onBatteryStatus(info) {
+		thePlace = document.getElementById(batterystatus);
+		thePlace.innerHTML = 'Battery level is: ' + info.level + '%';
+		isPlugged(info.isPlugged);
+    }
+    function onBatteryCritical(info) {
+		thePlace = document.getElementById(batterycritical);
+		thePlace.innerHTML = 'Battery level is: ' + info.level + '%';
+    }
+    function onBatteryLow(info) {
+		thePlace = document.getElementById(batterylow);
+		thePlace.innerHTML = 'Battery level is: ' + info.level + '%';
+    }
+	// http://www.mzcart.com/javascript-how-to-addremove-css-class-from-a-dom-element/
+	// http://www.w3schools.com/jsref/prop_element_classlist.asp
+	// Per w3schools, Removing a class that does not exist, does NOT throw an error
+	//                If the specified class already exist, the class will not be added
+	function isPlugged(bool) {
+		thePlace = document.getElementById(plugged);
+		if (bool) {
+			thePlace.classList.remove('hidden');
+		} else {
+			thePlace.classList.add('hidden');
+		}
+	}
+    </script>
+</head>
+<body>
+<div class="button button-block button-large"><img align=left src=favicon-48x48.png>Phonegap Battery Status</div>
+<span onclick='navigator.app.exitApp()'><button class="button button-pill button-primary button-large" style="margin:1em;">Exit</button></span>
+<div id=bs class="button button-block button-action button-large" style="margin:1em;">Status <span id=batterystatus><span></div>
+<div id=bc class="button button-block button-caution button-large" style="margin:1em;">Critical <span id=batterycritical><span></div>
+<div id=bl class="button button-block button-highlight button-large" style="margin:1em;">Low <span id=batterylow><span></div>
+<div id=plugged class="button button-block button-royal button-large hidden" style="margin:1em;">PLUGGED</div>
+
+<div class="copyright" style="padding:5px;align:left;font-style:italic;font-size:small;">
+    <span id=copyright>Created by Jesus Monroy, Jr. &copy; 2015</span>
+</div>
+</body>
+</html>
+
+
+
+
+
+

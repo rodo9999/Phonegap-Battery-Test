@@ -1,2 +1,2 @@
-# Phonegap-Battery-Test
-A simple test of Phonegaps's Battery API.
+# phonegap-media-test
+A base test of phonegap's Media plugin

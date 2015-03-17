@@ -15,21 +15,26 @@
     var my_media = null;
     var mediaTimer = null;
     // Wait for PhoneGap to load
-	window.addEventListener("batterystatus", onBatteryStatus, false);
-	window.addEventListener("batterycritical", onBatteryCritical, false);
-	window.addEventListener("batterylow", onBatteryLow, false);
-
+    document.addEventListener("deviceready", onDeviceReady, false);
+	//
+    function onDeviceReady() {
+		window.addEventListener("batterystatus", onBatteryStatus, false);
+		window.addEventListener("batterycritical", onBatteryCritical, false);
+		window.addEventListener("batterylow", onBatteryLow, false);
+		alert("listeners loaded.");
+    }
+	//
     function onBatteryStatus(info) {
-		thePlace = document.getElementById(batterystatus);
+		thePlace = document.getElementById('batterystatus');
 		thePlace.innerHTML = 'Battery level is: ' + info.level + '%';
 		isPlugged(info.isPlugged);
     }
     function onBatteryCritical(info) {
-		thePlace = document.getElementById(batterycritical);
+		thePlace = document.getElementById('batterycritical');
 		thePlace.innerHTML = 'Battery level is: ' + info.level + '%';
     }
     function onBatteryLow(info) {
-		thePlace = document.getElementById(batterylow);
+		thePlace = document.getElementById('batterylow');
 		thePlace.innerHTML = 'Battery level is: ' + info.level + '%';
     }
 	// http://www.mzcart.com/javascript-how-to-addremove-css-class-from-a-dom-element/
@@ -37,16 +42,29 @@
 	// Per w3schools, Removing a class that does not exist, does NOT throw an error
 	//                If the specified class already exist, the class will not be added
 	function isPlugged(bool) {
-		thePlace = document.getElementById(plugged);
+		thePlace = document.getElementById('plugged');
 		if (bool) {
 			thePlace.classList.remove('hidden');
 		} else {
 			thePlace.classList.add('hidden');
 		}
 	}
+	//
+	//	This is for testing the interface. It works on my laptop 'Lenovo T60'
+	//	http://code.tutsplus.com/tutorials/html5-battery-status-api--mobile-22795
+	function onLoad() {
+		if (window.navigator && window.navigator.battery) {
+		   s = 'supported.';
+			onBatteryStatus(window.navigator.battery);
+			isPlugged(window.navigator.battery.charging);
+		} else {
+		   s = 'NOT supported.';
+		}
+		alert("Battery level is " + s);
+	}
     </script>
 </head>
-<body>
+<body onload="onLoad()">
 <div class="button button-block button-large"><img align=left src=favicon-48x48.png>Phonegap Battery Status</div>
 <span onclick='navigator.app.exitApp()'><button class="button button-pill button-primary button-large" style="margin:1em;">Exit</button></span>
 <div id=bs class="button button-block button-action button-large" style="margin:1em;">Status <span id=batterystatus><span></div>

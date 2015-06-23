@@ -6,9 +6,9 @@
     <link rel="stylesheet" href="buttons.css" />
     <style>
     body {margin:0px;font-size:large;}
-	.hidden {visibility:collapse;display:none;}
-	.expose {visibility:visible;display:block;} // Here for completeness only.
-	.copyright {padding:5px;align:left;font-style:italic;font-size:small;}
+    .hidden {visibility:collapse;display:none;}
+    .expose {visibility:visible;display:block;} /* Here for completeness only. */
+    .copyright {padding:5px;align:left;font-style:italic;font-size:small;}
     </style>
     <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
     <script type="text/javascript">
@@ -16,58 +16,58 @@
     var mediaTimer = null;
     // Wait for PhoneGap to load
     document.addEventListener("deviceready", onDeviceReady, false);
-	//
+    //
     function onDeviceReady() {
-		if (device.platform === "iOS") {
-			//alert("got iOS");
-			// http://www.mzcart.com/javascript-how-to-addremove-css-class-from-a-dom-element/
-			document.getElementById('exitApp').classList.add("hidden");
-		}
-		window.addEventListener("batterystatus", onBatteryStatus, false);
-		window.addEventListener("batterycritical", onBatteryCritical, false);
-		window.addEventListener("batterylow", onBatteryLow, false);
-		alert("listeners loaded.");
+        if (device.platform === "iOS") {
+            //alert("got iOS");
+            // http://www.mzcart.com/javascript-how-to-addremove-css-class-from-a-dom-element/
+            document.getElementById('exitApp').classList.add("hidden");
+        }
+        window.addEventListener("batterystatus", onBatteryStatus, false);
+        window.addEventListener("batterycritical", onBatteryCritical, false);
+        window.addEventListener("batterylow", onBatteryLow, false);
+        alert("listeners loaded.");
     }
-	//
+    //
     function onBatteryStatus(info) {
-		thePlace = document.getElementById('batterystatus');
-		thePlace.innerHTML = 'Battery level is: ' + info.level + '%';
-		isPlugged(info.isPlugged);
+        thePlace = document.getElementById('batterystatus');
+        thePlace.innerHTML = 'Battery level is: ' + info.level + '%';
+        isPlugged(info.isPlugged);
     }
     function onBatteryCritical(info) {
-		thePlace = document.getElementById('batterycritical');
-		thePlace.innerHTML = 'Battery level is: ' + info.level + '%';
+        thePlace = document.getElementById('batterycritical');
+        thePlace.innerHTML = 'Battery level is: ' + info.level + '%';
     }
     function onBatteryLow(info) {
-		thePlace = document.getElementById('batterylow');
-		thePlace.innerHTML = 'Battery level is: ' + info.level + '%';
+        thePlace = document.getElementById('batterylow');
+        thePlace.innerHTML = 'Battery level is: ' + info.level + '%';
     }
-	// http://www.mzcart.com/javascript-how-to-addremove-css-class-from-a-dom-element/
-	// http://www.w3schools.com/jsref/prop_element_classlist.asp
-	// Per w3schools, Removing a class that does not exist, does NOT throw an error
-	//                If the specified class already exist, the class will not be added
-	function isPlugged(bool) {
-		thePlace = document.getElementById('plugged');
-		if (bool) {
-			thePlace.classList.remove('hidden');
-		} else {
-			thePlace.classList.add('hidden');
-		}
-	}
-	//
-	//	This is for testing the interface. It works on my laptop 'Lenovo T60'.
-	//	There is no guarantee this will work on mobile devices, since it fires before deviceready.
-	//	http://code.tutsplus.com/tutorials/html5-battery-status-api--mobile-22795
-	function onLoad() {
-		if (window.navigator && window.navigator.battery) {
-		   s = 'supported.';
-			onBatteryStatus(window.navigator.battery);
-			isPlugged(window.navigator.battery.charging);
-		} else {
-		   s = 'NOT supported.';
-		}
-		alert("Battery level is " + s);
-	}
+    // http://www.mzcart.com/javascript-how-to-addremove-css-class-from-a-dom-element/
+    // http://www.w3schools.com/jsref/prop_element_classlist.asp
+    // Per w3schools, Removing a class that does not exist, does NOT throw an error
+    //                If the specified class already exist, the class will not be added
+    function isPlugged(bool) {
+        thePlace = document.getElementById('plugged');
+        if (bool) {
+            thePlace.classList.remove('hidden');
+        } else {
+            thePlace.classList.add('hidden');
+        }
+    }
+    //
+    //    This is for testing the interface. It works on my laptop 'Lenovo T60'.
+    //    There is no guarantee this will work on mobile devices, since it fires before deviceready.
+    //    http://code.tutsplus.com/tutorials/html5-battery-status-api--mobile-22795
+    function onLoad() {
+        if (window.navigator && window.navigator.battery) {
+           s = 'supported.';
+            onBatteryStatus(window.navigator.battery);
+            isPlugged(window.navigator.battery.charging);
+        } else {
+           s = 'NOT supported.';
+        }
+        alert("Battery level is " + s);
+    }
     </script>
 </head>
 <body onload="onLoad()">

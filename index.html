@@ -77,11 +77,14 @@
     </script>
 </head>
 <body onload="onLoad()">
-<div class="button button-block button-large">
+<div id=header class="button button-block button-large">
     <img align=left src=favicon-48x48.png>
     Phonegap Battery Status
+</div>
+<div>
     <button id=exitApp onclick='navigator.app.exitApp()' class="button button-pill button-primary button-large">Exit</button>
 </div>
+<p style=clear:both; />
 <div id=bs class="button button-block button-action button-large" style="margin:1em;">Status <span id=batterystatus><span></div>
 <div id=bc class="button button-block button-caution button-large" style="margin:1em;">Critical <span id=batterycritical><span></div>
 <div id=bl class="button button-block button-highlight button-large" style="margin:1em;">Low <span id=batterylow><span></div>

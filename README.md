@@ -1,4 +1,13 @@
 # phonegap-media-test
+
+Esto funcionó con unos cambios que están documentados en config.xml .
+
+En general anda bien, pero de vez en cuando en cambio del porcentaje de batería muestra %undefined% .
+
+Basado en http://codesnippets.altervista.org/examples/phonegap/demos/PUBLIC.Apps.html
+
+---------------------------------------------------------------
+
 A base test of phonegap's Media plugin
 
 http://plugins.cordova.io/#/package/org.apache.cordova.battery-status

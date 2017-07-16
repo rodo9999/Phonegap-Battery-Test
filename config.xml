@@ -18,6 +18,8 @@
         <preference name="permissions" value="none"/>
 	<preference name="android-minSdkVersion" value="10" /> 
          <!-- device required so we can detect if we are using iOS -->
-		<gap:plugin name="org.apache.cordova.device" version="0.2.12" />
-		<gap:plugin name="org.apache.cordova.battery-status" version="0.2.11" />
+		<!-- gap:plugin name="org.apache.cordova.device" version="0.2.12" / -->
+		<!-- gap:plugin name="org.apache.cordova.battery-status" version="0.2.11" / -->
+	    <plugin name="cordova-plugin-device" spec="~1.1.6" />
+	    <plugin name="cordova-plugin-battery-status" spec="~1.2.4" />
     </widget>
